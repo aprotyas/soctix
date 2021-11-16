@@ -1,0 +1,11 @@
+ID,T_ID,FName,LName,Username,Password,Email,Phone
+1,1,Caprice,Florentine,cfloren,password1,cfloren@u.rochester.edu,4444444444
+2,2,Jacqueline,Moon,jmoon,password2,jmoon@u.rochester.edu,4444444445
+3,3,Theodore,Henry,thenry,password3,thenry@gmail.com,4444444446
+4,4,PSG,Manager,pman,password1,pman@gmail.com,4444444446
+5,5,Liverpool,Manager,lman,password1,lman@gmail.com,4444444446
+6,6,Everton,Manager,eman,password1,eman@gmail.com,4444444446
+7,7,Arsenal,Manager,aman,password1,aman@gmail.com,4444444446
+8,8,Abahoni,Manager,abman,password1,abman@gmail.com,4444444446
+9,9,Mohamedan,Manager,mman,password1,mman@gmail.com,4444444446
+10,10,DOHS,Manager,dman,password1,dman@gmail.com,4444444446

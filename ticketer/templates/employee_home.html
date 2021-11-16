@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<form method="POST" action="" , enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <fieldset class="form-group">
+     <legend class="border-bottom mb-4">Modify ticket</legend>
+     <div class="form-group">
+      {{form.ticket_id.label(class='form-control-label')}}
+   
+      {% if form.ticket_id.errors %}
+      {{form.ticket_id(class='form-control form-control-lg is-invalid')}}
+      <div class="invalid-feedback">
+       {% for error in form.ticket_id.errors %}
+       <span> {{error}}</span>
+       {% endfor %}
+      </div>
+      {% else %}
+      {{form.ticket_id(class='form-control form-control-lg')}}
+      {% endif %}
+     </div>
+   
+     <div class="form-group">
+      {{form.new_price.label(class='form-control-label')}}
+      {% if form.new_price.errors %}
+      {{form.new_price(class='form-control form-control-lg is-invalid')}}
+      <div class="invalid-feedback">
+       {% for error in form.new_price.errors %}
+       <span> {{error}}</span>
+       {% endfor %}
+      </div>
+      {% else %}
+      {{form.new_price(class='form-control form-control-lg')}}
+      {% endif %}
+     </div>
+   
+     <div class="form-group">
+      {{form.new_seat.label(class='form-control-label')}}
+      {% if form.new_seat.errors %}
+      {{form.new_seat(class='form-control form-control-lg is-invalid')}}
+      <div class="invalid-feedback">
+       {% for error in form.new_seat.errors %}
+       <span> {{error}}</span>
+       {% endfor %}
+      </div>
+      {% else %}
+      {{form.new_seat(class='form-control form-control-lg')}}
+      {% endif %}
+     </div>
+     <div class="form-check">
+        {{form.delete_ticket(class='form-check-input')}}
+        {{form.delete_ticket.label(class='form-check-label')}}
+      </div>
+   
+    </fieldset>
+    <div class="form-group">
+     {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+   </form>
+
+<fieldset class="form-group">
+<legend class="border-bottom mb-4">Managed tickets</legend>
+{% for ticket in tickets.items %}
+
+<article class="media content-section">
+  <section class="alignleft">
+    <p><strong>ID</strong>: {{ticket.ID}}
+      <strong>Venue</strong>: {{ticket.Represents.PlayedIn.Name}}<br>
+      <strong>Price</strong>: {{ticket.Price}}<br>
+      <strong>Seat ID</strong>: {{ticket.Seat}}
+    </p>
+  </section>
+</article>
+
+{% endfor %}
+
+{% for page_num in tickets.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+{% if page_num %}
+{% if tickets.page == page_num %}
+<a href="{{url_for('employee_home', page=page_num)}}" class="btn btn-info mb-4">{{page_num}}</a>
+{% else %}
+<a href="{{url_for('employee_home', page=page_num)}}" class="btn btn-outline-info mb-4">{{page_num}}</a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+</fieldset>
+{% endblock %}

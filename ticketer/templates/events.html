@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for event in events.items %}
+
+<article class="media content-section">
+  <section class="alignleft" style="text-align: left; width:49%; display: inline-block;">
+    <strong>Venue</strong>: {{event.PlayedIn.Name}}<br>
+    <strong>Time</strong>: {{event.Time.strftime("%m/%d/%Y | %H:%M")}}<br>
+    <strong>Teams</strong>: {{event.Team1.Name}} | {{event.Team2.Name}}
+  </section>
+  <section class="alignright" style="text-align: right; width:49%; display: inline-block;">
+    {% if current_user.__tablename__ != 'TeamManager' and current_user.__tablename__ != 'Employee' %}
+    <a href="{{url_for('checkout', event_id=event.ID)}}">Buy Ticket</a>
+    {% endif %}
+  </section>
+</article>
+
+{% endfor %}
+
+{% for page_num in events.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+{% if page_num %}
+{% if events.page == page_num %}
+<a href="{{url_for('events', page=page_num)}}" class="btn btn-info mb-4">{{page_num}}</a>
+{% else %}
+<a href="{{url_for('events', page=page_num)}}" class="btn btn-outline-info mb-4">{{page_num}}</a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endblock %}
